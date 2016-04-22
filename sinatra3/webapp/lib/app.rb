@@ -1,8 +1,11 @@
 require "rubygems"
 require "sinatra"
 require "json"
+require "redis"
 
 class App < Sinatra::Application
+
+  redis = Redis.new(:host => 'db', :port => '6379')
 
   set :bind, '0.0.0.0'
 
@@ -10,7 +13,13 @@ class App < Sinatra::Application
     "<h1>DockerBook Test Sinatra app</h1>"
   end
 
+  get '/json' do
+    params = redis.get "params"
+    params.to_json
+  end
+
   post '/json/?' do
+    redis.set "params", [params].to_json
     params.to_json
   end
 

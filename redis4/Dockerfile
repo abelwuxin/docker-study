@@ -18,7 +18,7 @@ RUN echo "deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-proposed main rest
 RUN apt-get update
 #then begin change
 
-RUN apt-get install redis-server redis-tools
+RUN apt-get -y install redis-server redis-tools
 EXPOSE 6379
 ENTRYPOINT ["/usr/bin/redis-server"]
 CMD []
