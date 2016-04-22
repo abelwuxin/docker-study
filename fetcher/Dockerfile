@@ -7,5 +7,5 @@ RUN apt-get -y install wget
 VOLUME ["/var/lib/tomcat7/webapps/"]
 WORKDIR /var/lib/tomcat7/webapps/
 
-ENTRYPOINT ["wget"]
-CMD ["-?"]
+ENTRYPOINT [" wget "]
+CMD [" --help "]
