@@ -1,6 +1,14 @@
-FROM voxxit/base:alpine
+FROM alpine:edge
 MAINTAINER Abel Deng "abeldeng@qq.com"
 ENV REFRESHED_AT 2016-4-22-11-07
+
+RUN  apk add --update git curl bash \
+  && curl -o /usr/bin/gosu -L https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64 \
+  && chmod +x /usr/bin/gosu \
+  && git clone https://github.com/sstephenson/bats.git /usr/local/src/bats \
+  && /usr/local/src/bats/install.sh /usr \
+  && apk del git curl \
+  && rm -r /var/cache/apk/* /usr/local/src/bats
 
 ENV CONSUL_VERSION 0.6.4
 
