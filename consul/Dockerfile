@@ -10,7 +10,7 @@ RUN cd /usr/sbin && unzip /tmp/consul.zip && chmod +x /usr/sbin/consul && rm /tm
 ADD consul.json /config/
 
 ADD https://releases.hashicorp.com/consul/0.6.4/consul_0.6.4_web_ui.zip /tmp/webui.zip
-RUN cd /tmp/ && unzip webui.zip && mv dist/ /webui/
+RUN cd /tmp/ && unzip webui.zip && mv static/ /webui/
 
 EXPOSE 8300 8301 8301/udp 8302 8302/udp 8400 8500 53/udp
 
