@@ -1,5 +1,5 @@
 web:
-  image: abeldeng/composeapp
+  image: registry.aliyuncs.com/abeldeng/composeapp
   command: python app.py
   ports:
    - "5000:5000"
