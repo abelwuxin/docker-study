@@ -1,4 +1,4 @@
-consulNodeS:
+consulNode:
   command: -server -advertise 113.132.75.250 -join 1.80.77.85
   image:  progrium/consul
   hostname: consulS
@@ -13,3 +13,14 @@ consulNodeS:
      - "53:53/udp"
   volumes:
      - /mnt:/data
+
+regNode:
+  command: consul://113.132.75.250:8500
+  image: gliderlabs/registrator:latest
+  hostname: regS
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+  links:
+    - consulNode
+
+
