@@ -13,3 +13,18 @@ consulNode:
     - "53:53/udp"
   volumes:
     - /mnt:/data
+
+regNode:
+  command: consul://1.80.77.85:8500
+  image: gliderlabs/registrator:latest
+  hostname: regM
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+  links:
+    - consulNode
+
+nginxReg:
+  ports:
+    - "80:80"
+    - "443:443"
+  image: smebberson/alpine-consul-nginx
