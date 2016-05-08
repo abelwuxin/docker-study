@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM phusion/baseimage:0.9.16
 MAINTAINER Abel Deng "abeldeng@qq.com"
 ENV REFRESHED_AT 2016-4-22-11-07
 RUN apt-get update
@@ -11,6 +11,13 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN locale-gen en_US.UTF-8
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
+
+# Add global apt repos
+RUN add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise universe" && \
+    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise main restricted universe multiverse" && \
+    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-updates main restricted universe multiverse" && \
+    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse"
+RUN apt-get update && apt-get -y upgrade
 
 # Initial update and install of dependency that can add apt-repos
 RUN apt-get -y update && apt-get install -y software-properties-common python-software-properties
