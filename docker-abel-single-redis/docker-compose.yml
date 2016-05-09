@@ -34,3 +34,14 @@ redis6:
   ports:
     - "7005:7000"
 
+rediser:
+  image: registry.aliyuncs.com/abeldeng/docker-abel-single-redis
+  hostname: rediser
+  links:
+    - redis1:redis1
+    - redis2:redis2
+    - redis3:redis3
+    - redis4:redis4
+    - redis5:redis5
+    - redis6:redis6
+
